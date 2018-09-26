@@ -1,0 +1,14 @@
+{
+  "name": "icmarkets-paypal",
+  "version": "1.0.0",
+  "description": "test",
+  "private": true,
+  "dependencies": {
+    "braintree": "2.12.0"
+  },
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "v.spirin@icmarkets.com.au",
+  "license": "ISC"
+}
