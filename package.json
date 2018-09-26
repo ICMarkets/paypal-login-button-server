@@ -1,7 +1,7 @@
 {
-  "name": "icmarkets-paypal",
+  "name": "paypal-login-button-server",
   "version": "1.0.0",
-  "description": "test",
+  "description": "Generate new client token from Braintree(PayPal)",
   "private": true,
   "dependencies": {
     "braintree": "2.12.0"
