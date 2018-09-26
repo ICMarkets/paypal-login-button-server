@@ -11,8 +11,7 @@ var gateway = braintree.connect({
 
 http.createServer((req, res) =>
     gateway.clientToken.generate({}, (err, _) => err
-            ? res.statusCode = 404 || res.end()
-            : res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(_.clientToken)
-        )
-    }
+        ? res.statusCode = 404 || res.end()
+        : res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(_.clientToken)
+    )
 ).listen(80);
