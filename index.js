@@ -24,4 +24,4 @@ http.createServer((req, res) =>
             ? res.statusCode = 404 || res.end()
             : res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(_.clientToken)
         )
-).listen(8880);
+).listen(80);
