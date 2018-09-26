@@ -1,5 +1,7 @@
 var http = require('http');
 var braintree = require('braintree');
+var fs = require('fs');
+var version = JSON.parse(fs.readFileSync('package.json')).version;
 
 var gateway = braintree.connect({
   environment: braintree.Environment.Production,
@@ -23,8 +25,10 @@ function cors (req, res) {
 http.createServer((req, res) =>
     req.method === 'OPTIONS'
         ? cors(req, res)
-        : gateway.clientToken.generate({}, (err, _) => err
-            ? res.statusCode = 404 || res.end()
-            : res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(_.clientToken)
+        : req.url.indexOf('version') !== -1
+            ? res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(version)
+            : gateway.clientToken.generate({}, (err, _) => err
+                ? res.statusCode = 404 || res.end()
+                : res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(_.clientToken)
     )
 ).listen(80);
