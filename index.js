@@ -1,4 +1,3 @@
-var fs = require('fs');
 var http = require('http');
 var braintree = require('braintree');
 
