@@ -11,24 +11,17 @@ var gateway = braintree.connect({
 });
 
 function cors (req, res) {
-    res.writeHead(200, {
-        'Access-Control-Allow-Origin': req.headers.origin,
-        'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Max-Age': '86400', // 24 hours
-        'Access-Control-Allow-Headers': 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept',
-        'Access-Control-Request-Method': req.method
-    });
-    res.end();
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control');
 }
 
 http.createServer((req, res) =>
-    req.method === 'OPTIONS'
-        ? cors(req, res)
-        : req.url.indexOf('version') !== -1
-            ? res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(version)
-            : gateway.clientToken.generate({}, (err, _) => err
-                ? res.statusCode = 404 || res.end()
-                : res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(_.clientToken)
-    )
-).listen(80);
+    cors(req, res) || req.url.indexOf('version') !== -1
+        ? res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(version)
+        : gateway.clientToken.generate({}, (err, _) => err
+            ? res.statusCode = 404 || res.end()
+            : res.writeHead(200, {'Content-Type': 'text/plain'}) || res.end(_.clientToken)
+        )
+).listen(8880);

@@ -1,6 +1,6 @@
 {
   "name": "paypal-login-button-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate new client token from Braintree(PayPal)",
   "private": true,
   "dependencies": {
