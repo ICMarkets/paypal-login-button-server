@@ -52,36 +52,14 @@ http.createServer(function (req, res) {
 
 function log (req, data) {
     if (console && console.log && req && data) {
-        var dt = new Date();
-        var ms = dt.getMilliseconds();
-        var len = ms.toString().length;
-        if (len === 1) {
-            ms = '00' + ms;
-        } else if (len === 2) {
-            ms = '0' + ms;
-        }
-        var dateLog = dateFormat(dt, 'DD-MM-YYYY');
-        var timeLog = dt.toLocaleTimeString() + '.' + ms;
-
         var info = {
             requestIP: req.connection.remoteAddress,
             requestHeaders: req.headers,
-            paypalData: data
+            paypalData: decodeURIComponent(data)
         };
 
         var logString = dateLog + ' ' + timeLog + ' > ' + JSON.stringify(info);
-        console.log('\x1b[0m', logString);
+        console.log('>   ' + JSON.stringify(info));
     }
-}
-
-function dateFormat(date, format) {
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
-    format = format.replace("DD", (d < 10 ? '0' : '') + d);
-    format = format.replace("MM", (m < 9 ? '0' : '') + (m + 1));
-    format = format.replace("YYYY", y);
-
-    return format;
 }
 
