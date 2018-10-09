@@ -30,11 +30,15 @@ function cors (req, res) {
 
 http.createServer(function (req, res) {
     cors(req, res);
-    if (req.url.indexOf('version') !== -1) {
+    if (req.url.indexOf('/version') !== -1) {
         res.writeHead(200, {'Content-Type': 'text/plain'});
         res.end(version);
-    } else if (req.url.indexOf('log?d=') !== -1) {
-        log(req, req.url.split('log?d=')[1]);
+    } else if (req.url.indexOf('/log?d=') !== -1) {
+        log(req, req.url.split('/log?d=')[1]);
+        res.writeHead(200);
+        res.end();
+    } else if (req.url.indexOf('/health') !== -1) {
+        console.log('>   HEALTH CHECK (200)');
         res.writeHead(200);
         res.end();
     } else {
