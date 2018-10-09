@@ -57,8 +57,6 @@ function log (req, data) {
             requestHeaders: req.headers,
             paypalData: decodeURIComponent(data)
         };
-
-        var logString = dateLog + ' ' + timeLog + ' > ' + JSON.stringify(info);
         console.log('>   ' + JSON.stringify(info));
     }
 }
