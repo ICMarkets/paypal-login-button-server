@@ -48,7 +48,7 @@ http.createServer(function (req, res) {
             }
         });
     }
-}).listen(8080);
+}).listen(80);
 
 function log (req, data) {
     if (console && console.log && req && data) {
