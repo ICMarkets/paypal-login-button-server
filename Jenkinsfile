@@ -51,7 +51,7 @@ pipeline {
                     docker.withRegistry("https://${env.DOCKER_REPO_URL}", "${env.IAM_ROLE}") {
                         IMAGENAME = "${env.DOCKER_REPO_URL}/${env.APPLICATION}"
                         image = docker.build("${IMAGENAME}")
-                        docker.image("${IMAGENAME}").push("${env.ENVIRONMENT}-${env.VERSION}")
+                        docker.image("${IMAGENAME}").push("${env.VERSION}")
                         docker.image("${IMAGENAME}").push("${env.ENVIRONMENT}-latest")
                     }
                 }
