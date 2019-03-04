@@ -20,7 +20,6 @@ pipeline {
 
         IAM_ROLE = "ecr:eu-west-2:ICM-AWS"
         REPO_URL = "https://github.com/ICMarkets/paypal-login-button-server.git"
-        GIT_CRED_ID = "github-navjot"
         DOCKER_REPO_URL = "466803351965.dkr.ecr.eu-west-2.amazonaws.com"
         REGION = "eu-west-2"
 
@@ -41,7 +40,7 @@ pipeline {
 
         stage('Code checkout') {
             steps {
-                git branch: "${env.BRANCH}", changelog: false, credentialsId: "${env.GIT_CRED_ID}", poll: false, url: "${env.REPO_URL}"
+                git branch: "${env.BRANCH}", changelog: false, credentialsId: "${env.ICM_GITHUB_CRED_ID}", poll: false, url: "${env.REPO_URL}"
             }
         }
 
