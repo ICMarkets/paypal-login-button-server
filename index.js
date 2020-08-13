@@ -4,10 +4,10 @@ var fs = require('fs');
 var version = JSON.parse(fs.readFileSync('package.json')).version;
 
 var gateway = braintree.connect({
-  environment: braintree.Environment.Production,
-  merchantId: 's72sbpq87tpptbv8',
-  publicKey: 'r65gszk4p2j248zr',
-  privateKey: '03251293bdede21fbfc7c0929af3758e'
+  environment: braintree.Environment.Sandbox,
+  merchantId: 'fgnwmx3twfhjy224',
+  publicKey: 'r5f3sxbcgks48jx4',
+  privateKey: 'ff34bbd76b90603914f994c622e67bd9'
 });
 
 function cors (req, res) {
